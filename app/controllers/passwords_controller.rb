@@ -2,9 +2,7 @@ class PasswordsController < ApplicationController
   before_action :authenticate_request!, only: %i[update]
 
   def forgot
-    if params[:email].nil?
-      return render json: { error: 'Email not present' }
-    end
+    return render json: { error: 'Email not present' } if params[:email].nil?
 
     user = User.find_by(email: params[:email].downcase)
 
@@ -33,7 +31,7 @@ class PasswordsController < ApplicationController
   end
 
   def update
-    if !params[:password].present?
+    unless params[:password].present?
       render json: { error: 'Password not present' }, status: :unprocessable_entity
       return
     end

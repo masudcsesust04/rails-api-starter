@@ -11,6 +11,9 @@ AllCops:
 Metrics/LineLength:
   Max: 120
 
+Metrics/MethodLength:
+  Max: 15
+
 Style/Encoding:
   EnforcedStyle: never
   Enabled: true
