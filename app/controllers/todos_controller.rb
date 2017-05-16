@@ -1,5 +1,6 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: %i[show update destroy]
+  before_action :authenticate_request!
 
   # GET /todos
   def index
@@ -34,7 +35,7 @@ class TodosController < ApplicationController
 
   def todo_params
     # whitelist params
-    params.permit(:title, :description, :created_by)
+    params.require(:todo).permit(:title, :description, :created_by)
   end
 
   def set_todo
