@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1>Welcome to example.com, <%= @user.name %></h1>
+<p>
+  You have successfully signed up to example.com
+</p>
+<p>
+  To complete your registration, you need to confirm you got this email. To do so, please click the link below:
+</p>
+<p>
+  <%= link_to 'Confirmation', confirm_users_url(:token => "#{@user.confirmation_token}") %>
+</p>
+<p>Thanks for joining and have a great day!</p>
+</body>
+</html>

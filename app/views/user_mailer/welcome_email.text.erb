@@ -1,0 +1,12 @@
+Welcome to example.com, <%= @user.name %>
+===============================================
+
+You have successfully signed up to example.com
+
+To complete your registration, you need to confirm you got this email. To do so, please click the link below:
+
+-----------------------------------------------
+<%= link_to 'Confirmation', confirm_users_url(:token => "#{@user.confirmation_token}") %>
+-----------------------------------------------
+
+Thanks for joining and have a great day!
