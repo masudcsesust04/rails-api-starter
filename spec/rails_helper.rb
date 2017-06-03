@@ -76,7 +76,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include RequestSpecHelper, type: :request
-  # config.include ControllerSpecHelper
+  config.include ControllerSpecHelper
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
