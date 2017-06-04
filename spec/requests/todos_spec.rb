@@ -8,17 +8,32 @@ RSpec.describe 'Todos API', type: :request do
   let(:headers) { valid_headers }
 
   describe 'GET /todos' do
-    # make HTTP get request before each example
-    before { get '/todos', params: {}, headers: headers }
+    context 'valid headers' do
+      before { get '/todos', params: {}, headers: headers }
 
-    it 'returns todos' do
-      # Note `json` is a custom helper to parse JSON responses
-      expect(json).not_to be_empty
-      expect(json.size).to eq(10)
+      it 'returns todos' do
+        # Note `json` is a custom helper to parse JSON responses
+        expect(json).not_to be_empty
+        expect(json.size).to eq(10)
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
     end
 
-    it 'returns status code 200' do
-      expect(response).to have_http_status(200)
+    context 'invalid headers' do
+
+      let(:headers) { invalid_headers }
+      before { get '/todos', params: {}, headers: headers }
+
+      it 'returns a error message' do
+        expect(response.body).to match(/Invalid Request/)
+      end
+
+      it 'returns status code 401' do
+        expect(response).to have_http_status(401)
+      end
     end
   end
 
